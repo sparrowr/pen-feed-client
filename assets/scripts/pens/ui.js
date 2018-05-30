@@ -15,8 +15,6 @@ const createPenFailure = function () {
 }
 
 const getPensSuccess = function (pens) {
-  console.log('getPensSuccess')
-  console.log(pens)
   const getPensHTML = showPensTemplate({pens: pens})
   $('.pen-content').html(getPensHTML)
   if (pens.length === 0) {

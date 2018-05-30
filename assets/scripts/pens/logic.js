@@ -125,16 +125,14 @@ const displayPens = function displayPens (data) {
   // return array of pens formatted for handlebars
   // first drop all the pens that belong to other people
   // and apply status info to ones that belong to current user
-  let myPens = []
+  const myPens = []
   data.pens.forEach(function (pen) {
     if (pen.owner === store.user._id) {
       myPens.push(addStatusInfo(pen))
     }
   })
   // next, sort pens by priority
-  myPens = myPens.sort(comparePens)
-  store.pens = myPens
-  console.log(store.pens)
+  store.pens = myPens.sort(comparePens)
   return store.pens
 }
 
