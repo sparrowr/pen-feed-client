@@ -1,8 +1,6 @@
 'use strict'
 
-// const showPensTemplate = require('../templates/pen.handlebars')
-// const showMyPensTemplate = require('../templates/my-pen.handlebars')
-// const store = require('../store.js')
+const showPensTemplate = require('../templates/pen.handlebars')
 
 const createPenSuccess = function () {
   $('.status').text('You have successfully created a pen!')
@@ -16,14 +14,14 @@ const createPenFailure = function () {
   setTimeout(() => $('.status').text(''), 2000)
 }
 
-const getPensSuccess = function (data) {
+const getPensSuccess = function (pens) {
   console.log('getPensSuccess')
-  console.log(data)
-  // const getPensHTML = showPensTemplate({pens: data.pens})
-  // $('.pen-content').html(getPensHTML)
-  // if (data.pens.length === 0) {
-  //   $('.pen-content').html('<h2>No pens were found</h2>')
-  // }
+  console.log(pens)
+  const getPensHTML = showPensTemplate({pens: pens})
+  $('.pen-content').html(getPensHTML)
+  if (pens.length === 0) {
+    $('.pen-content').html('<h2>No pens were found</h2>')
+  }
 }
 
 const getPensFailure = function () {

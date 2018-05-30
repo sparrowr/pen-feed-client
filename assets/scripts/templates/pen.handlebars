@@ -1,0 +1,43 @@
+{{#each pens as |pen|}}
+<div>
+  <h1 data-id="{{pen._id}}" class="my-pen"> {{pen.name}}</h1>
+  <ul data-id="{{pen._id}}">
+    <li>{{pen.cleaningMessage}}</li>
+    <li>Days since last update: {{pen.daysSinceUpdate}}</li>
+    {{#if pen.inkType}}
+      <li>Ink Type: {{pen.inkType}}</li>
+    {{/if}}
+    {{#if pen.inkName}}
+      <li>Ink Name: {{pen.inkName}}</li>
+    {{/if}}
+  <small>Pen ID:{{pen._id}}</small>
+  <br>
+    <input type="button" class="btn classic" data-id="{{pen._id}}" data-toggle="modal" data-target="#updateModal{{pen._id}}" name="Update" value="Update">
+
+    <!--Begin Update Modal -->
+    <div class="modal" id="updateModal{{pen._id}}"  tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Update Pen</h4>
+          </div>
+        <div class="modal-body" data-id="{{pen._id}}">
+          <form class="update-pen" data-id="{{pen._id}}">
+            <p>Name: <input type="text" name="pen[name]" placeholder="New Name"></p>
+            <br>
+            <input type="submit" data-id="{{pen._id}}" name="submit" value="Update Pen">
+          </form>
+        </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--End of Update Modal   -->
+    <button type="button" class="btn classic destroy-id" data-id="{{pen._id}}" name="Remove">Remove</button>
+</ul>
+</div>
+<hr>
+{{/each}}
