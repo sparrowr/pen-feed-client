@@ -24,8 +24,29 @@
           </div>
         <div class="modal-body" data-id="{{pen._id}}">
           <form class="update-pen" data-id="{{pen._id}}">
-            <p>Name: <input type="text" name="pen[name]" placeholder="New Name"></p>
+            <p>Name: <input type="text" name="pen[name]" placeholder={{pen.name}}></p>
             <br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inkedCheckBox{{pen._id}}" name="pen[isInked]">
+                <label class="form-check-label" for="inkedCheckBox{{pen._id}}">Inked</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="cleanedCheckBox{{pen._id}}" name="pen[isClean]">
+                <label class="form-check-label" for="cleanedCheckBox{{pen._id}}">Cleaned</label>
+              </div>
+            <input type="text" name="pen[inkName]" placeholder="Ink Name">
+            <label for="changedOnSelector{{pen._id}}">Pen inked or cleaned on:</label>
+            <input type="date" id="changedOnSelector{{pen._id}}" name="pen[changedOn]" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+            <br>
+            <label for="inkTypeSelector{{pen._id}}">Ink type:</label>
+              <select multiple class="form-control" id="inkTypeSelector{{pen._id}}" name="pen[inkType]">
+                <!-- value="pen[inkType]" -->
+                <option>Empty</option>
+                <option>Water-Soluble</option>
+                <option>Bulletproof</option>
+                <option>Waterproof</option>
+                <option>Shimmer</option>
+              </select>
             <input type="submit" data-id="{{pen._id}}" name="submit" value="Update Pen">
           </form>
         </div>

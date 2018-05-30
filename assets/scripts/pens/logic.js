@@ -18,15 +18,16 @@ const cleaningMessages = {
   1: 'This pen should be cleaned now.',
   2: 'This pen should probably be cleaned this week.',
   3: 'This pen will need cleaning eventually.',
-  4: 'This pen is clean.'
+  4: 'This pen is clean.',
+  5: 'Please add more information to see cleaning guidance.'
 }
 
 // accept pen with days inked, return cleaning priority 0-3
 // priority 0 needs cleaning most badly, priority 3 doesn't need cleaning yet
 const addCleaningPriority = function addCleaningPriority (pen) {
-  // if this has an invalid or unrecorded ink type, priority 0
+  // if this has an invalid or unrecorded ink type and isn't clean, priority 5
   if (!cleanIntervals[pen.inkType]) {
-    return 0
+    return 5
   }
   // if daysSinceUpdate > cleanInterval * 2, priority 0
   if (pen.daysSinceUpdate > cleanIntervals[pen.inkType] * 2) {
@@ -47,26 +48,8 @@ const addCleaningPriority = function addCleaningPriority (pen) {
 // and, if it's not clean, how badly it needs cleaning
 const addStatusInfo = function addStatusInfo (pen) {
   // JavaScript months are zero-indexed
-  // this isn't @#%@#%#@^ working and I don't !#%@#^#$% know why
-  console.log('pen in addStatusInfo')
-  console.log(pen)
-  const dateOfChange = new Date(pen.changedYear, (pen.changedMonth - 1), pen.ChangedDay)
-  console.log('make sure types are okay?')
-  console.log(typeof pen.changedYear)
-  console.log(typeof (pen.changedMonth - 1))
-  console.log(typeof pen.changedDay)
-  console.log('what is date anyway')
-  console.log(typeof dateOfChange)
-  console.log(dateOfChange)
-  console.log('log inputs themselves')
-  console.log(pen.changedYear)
-  console.log((pen.changedMonth - 1))
-  console.log(pen.changedDay)
+  const dateOfChange = new Date(pen.changedYear, (pen.changedMonth - 1), pen.changedDay)
   const msSinceEpoch = Date.now()
-  console.log('dateOfChange.valueOf()')
-  console.log(dateOfChange.valueOf())
-  console.log('msSinceEpoch')
-  console.log(msSinceEpoch)
   // 1000 ms in a second, 60 seconds in a minute, 60 minutes in an hour, 24 hours in a day
   const msPerDay = 1000 * 60 * 60 * 24
   pen.daysSinceUpdate = Math.floor((msSinceEpoch - dateOfChange.valueOf()) / msPerDay)
@@ -134,8 +117,6 @@ const storePen = function storePen (data) {
     data.pen.changedMonth = data.pen.changedOn.slice(5, 7) * 1
     data.pen.changedDay = data.pen.changedOn.slice(8) * 1
   }
-  console.log('data in storePen')
-  console.log(data)
   return data
 }
 
