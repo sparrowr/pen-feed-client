@@ -74,7 +74,7 @@ const addStatusInfo = function addStatusInfo (pen) {
 const mostRecentPen = function mostRecentPen (penA, penB) {
   if (penA.daysSinceUpdate < penB.daysSinceUpdate) {
     return -1
-  } else if (penB.daysSinceUpdate > penA.daysSinceUpdate) {
+  } else if (penA.daysSinceUpdate > penB.daysSinceUpdate) {
     return 1
   }
   return 0
