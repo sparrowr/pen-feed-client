@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Pen Feed</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet">
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+      <!-- Navigation Bar  -->
+<nav class="navbar stick navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <p class="brand">Pen Feed</p>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+      </ul>
+      <div class="nav navbar-nav navbar-right">
+        <!--Sign In Button Trigger Modal  -->
+        <input required type="button" class="btn btn-cyan  sign-in" data-toggle="modal" data-target="#myModal" value="Log In!">
+        <!-- Sign-In Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Log In!</h4>
+              </div>
+              <div class="modal-body">
+                <form id="sign-in">
+                  <input type="email" class="form-control" name="credentials[email]" placeholder="Email">
+                  <input required type="password" class="form-control" name="credentials[password]" placeholder="Password">
+                  <input required type="submit" class="btn btn-cyan" value="Log In!">
+                </form>
+              </div>
+              <div class="modal-footer">
+                <h2 class="authmessage"></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Sign-In Modal End  -->
+
+        <!-- Sign Up Button Trigger Modal -->
+        <input type="button" class="btn btn-sand  sign-up" data-toggle="modal" data-target="#myModal1" value="Sign Up!">
+        <!-- Sign- Up Modal -->
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Sign Up!</h4>
+              </div>
+              <div class="modal-body">
+                <form id="sign-up">
+                  <input required type="email" class="form-control" name="credentials[email]" placeholder="123@example.com">
+                  <input required type="password" class="form-control" name="credentials[password]" placeholder="Password">
+                  <input required type="password" class="form-control" name="credentials[password_confirmation]" placeholder="Confirm Password">
+                  <input required type="submit" class="btn btn-cyan" value="Sign Up!">
+                </form>
+              </div>
+              <div class="modal-footer">
+                <h2 class="authmessage1"></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Sign Up Modal End  -->
+
+        <!-- Change Password Button Trigger Modal -->
+        <input required type="button" class="btn btn-sand hidden show-on-sign-in  change-password" data-toggle="modal" data-target="#myModal2" value="Change Password">
+
+        <!-- Change Password Modal Begin -->
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Change Password</h4>
+              </div>
+              <div class="modal-body">
+                <form id="change-password">
+                  <input required type="password" name="passwords[old]" placeholder="Old Password">
+                  <input required type="password" name="passwords[new]" placeholder="New Password">
+                  <input required type="submit" value="Change Password ">
+                </form>
+              </div>
+              <div class="modal-footer">
+                <h2 class="authmessage2"></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Change Password Modal End  -->
+
+        <!--Sign Out Button Start -->
+        <input type="button" class="btn btn-sand hidden show-on-sign-in sign-out" value="Sign Out" id="sign-out">
+        <!--Sign Out Button End  -->
+
+      </div>
+    </div>
+  </div>
+<!-- Navigation End  -->
+</nav>
+
+<!--Status Messages Start-->
+<div>
+  <p class="status"></p>
+</div>
+<!--End of Status Message  -->
+
+<!--Pens and Blog Dashboards with tabs to seperate them  -->
+<section class="private hidden">
+<!--Dashboard for Pens  -->
+      <div id="all-pen-content">
+        <div class="pen-dashboard" class="tab-pane fade in active">
+          <!--Handlebars Content -->
+          <!-- Create Pen Button Trigger Modal -->
+          <input required type="button" class="btn btn-cyan hidden show-on-sign-in create-pen" data-toggle="modal" data-target="#myModalCreatePen" value="Add Pen">
+
+          <!--INDEX my pens button -->
+          <button class="btn btn-sand hidden show-on-sign-in get-my-pens" type="button" name="button" id="getPens">Refresh Pen List</button>
+
+
+          <!-- Create Pen Modal Begin -->
+          <div class="modal fade" id="myModalCreatePen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Add Pen</h4>
+              <div class="modal-body">
+                <p>Only pen name is required.</p>
+                <form id="create-pen">
+                  <label for="penNameField">Pen Name:</label>
+                  <input type="text" name="pen[name]" placeholder="Pen Name" id="penNameField">
+                  <br>
+                  <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inkedCheckBox" name="pen[isInked]">
+                      <label class="form-check-label" for="inkedCheckBox">Inked</label>
+                      <input class="form-check-input" type="checkbox" id="cleanedCheckBox" name="pen[isClean]">
+                      <label class="form-check-label" for="cleanedCheckBox">Cleaned</label>
+                  </div>
+                  <br>
+                  <label for="inkNameField">Ink Name:</label>
+                  <input type="text" name="pen[inkName]" placeholder="Ink Name" id="inkNameField">
+                  <br>
+                  <label for="changedOnSelector">Pen inked or cleaned on:</label>
+                  <input type="date" id="changedOnSelector" name="pen[changedOn]" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+                  <br>
+                  <label for="inkTypeSelector">Ink type:</label>
+                    <select multiple class="form-control" id="inkTypeSelector" name="pen[inkType]">
+                      <!-- value="pen[inkType]" -->
+                      <option>Empty</option>
+                      <option>Water-Soluble</option>
+                      <option>Bulletproof</option>
+                      <option>Waterproof</option>
+                      <option>Shimmer</option>
+                    </select>
+            <input type="submit" class="btn btn-cyan" name="submit" value="Create Pen">
+                </form>
+              </div>
+              <div class="modal-footer">
+                <h2 class="createPenMessage"></h2>
+              </div>
+              </div>
+            </div>
+          </div>
+          <!--Create Pen Modal End  -->
+        </div>
+        <div class="pen-content">
+        </div>
+      </div>
+      <!--End Handlebars Content  -->
+    <!--End of Dashboard for Pens-->
+    </div>
+</section>
+<!--End of Pens and Blog Content Divs  -->
+
+    </body>
+</html>
