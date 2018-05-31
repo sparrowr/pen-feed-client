@@ -1,2 +1,56 @@
+// these are defaults from bootstrap website
+// @brand-primary: darken(#428bca, 6.5%); // #337ab7
+// @brand-success: #5cb85c;
+// @brand-info:    #5bc0de;
+// @brand-warning: #f0ad4e;
+// @brand-danger:  #d9534f;
+
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+// from material colors
+$sand: #bcaaa4;
+$cyan: #80deea;
+$darker-sand: #8d6e63;
+
+$black: #000;
+$white: #fff;
+
+// create nicer breaks between pens
+hr {
+  // modern browsers
+  background-color: $sand;
+  border: 0;
+  // old browsers
+  color: $sand;
+  height: 6px;
+}
+
+h1,
+h4 {
+  font-family: 'Lobster Two', cursive;
+}
+
+.brand {
+  color: $darker-sand;
+  font-family: 'Lobster Two', cursive;
+  font-size: 3rem;
+}
+
+// align pen handlebars output better
+.pen-info {
+  align-items: center;
+  text-align: center;
+}
+
+// custom button colors
+.btn-cyan {
+  background-color: $cyan;
+  color: $black;
+}
+
+.btn-sand {
+  background-color: $sand;
+  color: $black;
+}
