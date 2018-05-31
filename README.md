@@ -51,7 +51,7 @@ API.
 
 ## Setting Up and Installing This Project
 
-1. Install a local copy of this repository on your computer. 
+1. Install a local copy of this repository on your computer.
 1. Run `npm install` and then `grunt serve` from the project folder to run a local version of this project on your computer. You will also need an instance of the backend API for the client to talk to.
 1. To deploy a version of this project to GitHub Pages, run `grunt deploy`. You will need write permissions to the GitHub repository you have configured as your origin.
 
@@ -91,6 +91,9 @@ On the frontend, I started by setting up the Create action for the pens resource
 then Read, then Update and finally Destroy. Create, Read, and Update were all
 moderately complex, but Destroy was very simple.
 
+Once the project requirements were met, I spent a bunch of time improving the design
+and making it more accessible and better looking.
+
 ## Unsolved Problems and Possible Future Tasks
 
 1. Authentication is currently done through code hand-rolled by General Assembly instructors. Among other problems, this code never checks if the content in the "password" and "confirm password" boxes on the signup page are the same.
@@ -98,7 +101,6 @@ moderately complex, but Destroy was very simple.
 1. There's no way to share pen information with other users.
 1. Users cannot store information about ink use anywhere in this app.
 1. The "Inked" and "Cleaned" check-boxes are somewhat small and could be improved.
-1. There is no CSS/styling at all.
 
 ## Credits and Technologies Used
 
@@ -107,6 +109,7 @@ moderately complex, but Destroy was very simple.
 - This project uses JavaScript, and the JavaScript tools Bootstrap 3, Express, Handlebars, NPM, and JQuery.
 - Express uses Mongoose in order to store documents in MongoDB.
 - Some pen cleaning recommendations came from [Jetpens](https://www.jetpens.com)
+- Colors were chosen using the [Material Design Guide](https://material.io/design/color/the-color-system.html#tools-for-picking-colors) and the [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
 
 ## [License](LICENSE)
 
