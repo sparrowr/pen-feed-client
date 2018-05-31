@@ -40,9 +40,9 @@ const onUpdatePens = (event) => {
 
 const onDeletePen = (event) => {
   event.preventDefault()
-  const penId = $(event.target).closest('ul').attr('data-id')
+  const penId = $(event.target).data('id')
   api.deletePen(penId)
-    .then(ui.getDeletePenSuccess)
+    .then(ui.getDeletePenSuccess(penId))
     .then(() => onGetPens(event))
     .catch(ui.getDeletePenFailure)
 }
@@ -58,7 +58,7 @@ const addHandlers = () => {
     $('#all-pen-content').removeClass('hidden')
   })
   $('.pen-content').on('submit', '.update-pen', onUpdatePens)
-  $('.pen-content').on('click', '.destroy-id', onDeletePen)
+  $('.pen-content').on('submit', '.remove-pen', onDeletePen)
 }
 
 module.exports = {

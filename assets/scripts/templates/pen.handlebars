@@ -14,6 +14,7 @@
   <small>Pen ID:{{pen._id}}</small>
   <br>
 </ul>
+    <!-- update button -->
     <input type="button" class="btn btn-cyan" data-id="{{pen._id}}" data-toggle="modal" data-target="#updateModal{{pen._id}}" name="Update" value="Update">
 </div>
     <!--Begin Update Modal -->
@@ -62,7 +63,29 @@
 </div>
 <!--End of Update Modal   -->
 <div class="pen-info">
-    <button type="button" class="btn btn-sand destroy-id" data-id="{{pen._id}}" name="Remove">Remove</button>
+  <input type="button" class="btn btn-sand" data-id="{{pen._id}}"
+  data-toggle="modal" data-target="#removeModal{{pen._id}}" name="Remove" value="Remove">
 </div>
+<!--Begin Remove Modal -->
+<div class="modal" id="removeModal{{pen._id}}"  tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Really remove {{pen.name}}?</h4>
+      </div>
+    <div class="modal-body" data-id="{{pen._id}}">
+      <p>This pen's information will be destroyed.</p>
+      <form class="remove-pen" data-id="{{pen._id}}">
+        <input type="submit" data-id="{{pen._id}}" class="btn btn-cyan" name="submit" value="Remove Pen">
+      </form>
+    </div>
+  <div class="modal-footer">
+
+  </div>
+</div>
+</div>
+</div>
+<!-- End Removal Modal -->
 <hr>
 {{/each}}
