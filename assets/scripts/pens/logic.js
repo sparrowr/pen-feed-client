@@ -18,27 +18,28 @@ const cleaningMessages = {
   1: 'This pen should be cleaned now.',
   2: 'This pen should probably be cleaned this week.',
   3: 'This pen will need cleaning eventually.',
-  4: 'This pen is clean.',
-  5: 'Please add more information to see cleaning guidance.'
+  4: 'This pen is clean.'
 }
 
 // accept pen with days inked, return cleaning priority 0-3
 // priority 0 needs cleaning most badly, priority 3 doesn't need cleaning yet
 const addCleaningPriority = function addCleaningPriority (pen) {
-  // if this has an invalid or unrecorded ink type and isn't clean, priority 5
-  if (!cleanIntervals[pen.inkType]) {
-    return 5
+  // if this has an invalid or unrecorded ink type and is not clean
+  // default to water-soluble ink
+  let cleanAfter = cleanIntervals['Water-Soluble']
+  if (cleanIntervals[pen.inkType]) {
+    cleanAfter = cleanIntervals[pen.inkType]
   }
   // if daysSinceUpdate > cleanInterval * 2, priority 0
-  if (pen.daysSinceUpdate > cleanIntervals[pen.inkType] * 2) {
+  if (pen.daysSinceUpdate > cleanAfter * 2) {
     return 0
   }
   // if daysSinceUpdate > cleanInterval, priority 1
-  if (pen.daysSinceUpdate > cleanIntervals[pen.inkType]) {
+  if (pen.daysSinceUpdate > cleanAfter) {
     return 1
   }
   // if daysSinceUpdate > cleanInterval + 7, priority 2
-  if (pen.daysSinceUpdate > cleanIntervals[pen.inkType] + 7) {
+  if (pen.daysSinceUpdate > cleanAfter + 7) {
     return 2
   }
   return 3
