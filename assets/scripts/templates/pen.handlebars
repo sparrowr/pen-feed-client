@@ -1,7 +1,8 @@
 {{#each pens as |pen|}}
 <div>
-  <h1 data-id="{{pen._id}}" class="my-pen"> {{pen.name}}</h1>
-  <ul data-id="{{pen._id}}">
+  <div class="pen-info">
+  <h1 data-id="{{pen._id}}"> {{pen.name}}</h1>
+  <ul data-id="{{pen._id}}" class="list-unstyled">
     <li>{{pen.cleaningMessage}}</li>
     <li>Days since last update: {{pen.daysSinceUpdate}}</li>
     {{#if pen.inkType}}
@@ -12,8 +13,9 @@
     {{/if}}
   <small>Pen ID:{{pen._id}}</small>
   <br>
-    <input type="button" class="btn classic" data-id="{{pen._id}}" data-toggle="modal" data-target="#updateModal{{pen._id}}" name="Update" value="Update">
-
+</ul>
+    <input type="button" class="btn btn-cyan" data-id="{{pen._id}}" data-toggle="modal" data-target="#updateModal{{pen._id}}" name="Update" value="Update">
+</div>
     <!--Begin Update Modal -->
     <div class="modal" id="updateModal{{pen._id}}"  tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -24,17 +26,19 @@
           </div>
         <div class="modal-body" data-id="{{pen._id}}">
           <form class="update-pen" data-id="{{pen._id}}">
-            <p>Name: <input type="text" name="pen[name]" placeholder="{{pen.name}}"</p>
+            <label for="penNameField{{pen._id}}">Pen Name:</label>
+            <input type="text" name="pen[name]" placeholder="{{pen.name}}" id="penNameField{{pen._id}}">
             <br>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" id="inkedCheckBox{{pen._id}}" name="pen[isInked]">
                 <label class="form-check-label" for="inkedCheckBox{{pen._id}}">Inked</label>
-              </div>
-              <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" id="cleanedCheckBox{{pen._id}}" name="pen[isClean]">
                 <label class="form-check-label" for="cleanedCheckBox{{pen._id}}">Cleaned</label>
-              </div>
-            <input type="text" name="pen[inkName]" placeholder="Ink Name">
+            </div>
+            <br>
+            <label for="inkNameField{{pen._id}}">Ink Name:</label>
+            <input type="text" name="pen[inkName]" placeholder="{{pen.inkName}}" id="inkNameField{{pen._id}}">
+            <br>
             <label for="changedOnSelector{{pen._id}}">Pen inked or cleaned on:</label>
             <input type="date" id="changedOnSelector{{pen._id}}" name="pen[changedOn]" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
             <br>
@@ -47,7 +51,7 @@
                 <option>Waterproof</option>
                 <option>Shimmer</option>
               </select>
-            <input type="submit" data-id="{{pen._id}}" name="submit" value="Update Pen">
+            <input type="submit" data-id="{{pen._id}}" class="btn btn-cyan" name="submit" value="Update Pen">
           </form>
         </div>
       <div class="modal-footer">
@@ -57,8 +61,8 @@
   </div>
 </div>
 <!--End of Update Modal   -->
-    <button type="button" class="btn classic destroy-id" data-id="{{pen._id}}" name="Remove">Remove</button>
-</ul>
+<div class="pen-info">
+    <button type="button" class="btn btn-sand destroy-id" data-id="{{pen._id}}" name="Remove">Remove</button>
 </div>
 <hr>
 {{/each}}
