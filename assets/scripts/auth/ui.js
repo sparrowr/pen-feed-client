@@ -1,5 +1,7 @@
 'use strict '
 const store = require('../store.js')
+const penEvents = require('../pens/events.js')
+
 const signUpSuccess = function () {
   $('.status').text('You have successfully signed up! Please sign in!')
   setTimeout(() => $('.status').text(''), 2000)
@@ -28,8 +30,9 @@ const signInSuccess = function (data) {
   $('.public').addClass('hidden')
   $('.status').removeClass('hidden')
   $('.private').removeClass('hidden')
-
   store.user = data.user
+  // automatically get pens
+  penEvents.autoGetPens()
 }
 const signInFailure = function () {
   $('.authmessage').text('Please try again!')
@@ -63,6 +66,7 @@ const signOutSuccess = function () {
   $('.public').removeClass('hidden')
   $('.status').removeClass('hidden')
   $('.private').addClass('hidden')
+  $('.pen-content').html('')
   store.user = null
 }
 module.exports = {

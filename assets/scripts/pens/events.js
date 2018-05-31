@@ -15,12 +15,16 @@ const onCreatePen = (event) => {
     .catch(ui.createPenFailure)
 }
 
-const onGetPens = (event) => {
-  event.preventDefault()
+const autoGetPens = function autoGetPens () {
   api.getPens()
     .then(logic.displayPens)
     .then(ui.getPensSuccess)
     .catch(ui.getPensFailure)
+}
+
+const onGetPens = (event) => {
+  event.preventDefault()
+  autoGetPens()
 }
 
 const onUpdatePens = (event) => {
@@ -59,5 +63,5 @@ const addHandlers = () => {
 
 module.exports = {
   addHandlers,
-  onGetPens
+  autoGetPens
 }
